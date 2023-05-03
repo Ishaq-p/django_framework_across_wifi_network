@@ -11,7 +11,6 @@ from django.contrib.auth.models import User
 
 
 
-
 def profiles(request):
     users = User.objects.all()
     return render(request, 'profiles.html', {'users': users})
