@@ -1,0 +1,64 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <h2>Web Game</h2>
+  <p>Score: <span id="score">0</span></p>
+  <div id="game-container">
+    <div id="player"></div>
+    <div id="target"></div>
+  </div>
+{% endblock %}
+
+{% block scripts %}
+  <script>
+    // Set up the game elements
+    const gameContainer = document.getElementById('game-container');
+    const player = document.getElementById('player');
+    const target = document.getElementById('target');
+    let score = 0;
+
+    // Set up the player movement
+    const playerWidth = player.offsetWidth;
+    const playerHeight = player.offsetHeight;
+    const gameWidth = gameContainer.offsetWidth;
+    const gameHeight = gameContainer.offsetHeight;
+    let playerX = gameWidth / 2 - playerWidth / 2;
+    let playerY = gameHeight - playerHeight;
+    player.style.left = playerX + 'px';
+    player.style.top = playerY + 'px';
+    document.addEventListener('keydown', (event) => {
+      switch (event.keyCode) {
+        case 37: // Left arrow
+          playerX -= 10;
+          if (playerX < 0) playerX = 0;
+          break;
+        case 39: // Right arrow
+          playerX += 10;
+          if (playerX > gameWidth - playerWidth) playerX = gameWidth - playerWidth;
+          break;
+      }
+      player.style.left = playerX + 'px';
+    });
+
+    // Set up the target movement
+    const targetWidth = target.offsetWidth;
+    const targetHeight = target.offsetHeight;
+    let targetX = Math.floor(Math.random() * (gameWidth - targetWidth));
+    let targetY = 0;
+    target.style.left = targetX + 'px';
+    target.style.top = targetY + 'px';
+    const moveTarget = () => {
+      targetY += 5;
+      if (targetY > gameHeight) {
+        targetX = Math.floor(Math.random() * (gameWidth - targetWidth));
+        targetY = 0;
+        score++;
+        document.getElementById('score').innerText = score;
+      }
+      target.style.left = targetX + 'px';
+      target.style.top = targetY + 'px';
+      window.requestAnimationFrame(moveTarget);
+    };
+    window.requestAnimationFrame(moveTarget);
+  </script>
+{% endblock %}
