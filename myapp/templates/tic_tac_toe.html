@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <h2>Tic Tac Toe</h2>
+  <div id="board">
+    {% for i in rows|lengthrange:3 %}
+  <tr>
+    {% for j in cols|lengthrange:3 %}
+      <td id="{{ i }}-{{ j }}" onclick="cellClicked('{{ i }}', '{{ j }}')"></td>
+    {% endfor %}
+  </tr>
+    {% endfor %}
+
+  </div>
+{% endblock %}
+
+{% block scripts %}
+  <script>
+    const squares = document.querySelectorAll('.square');
+    squares.forEach(square => square.addEventListener('click', () => {
+      const position = square.dataset.position;
+      const form = document.createElement('form');
+      form.method = 'POST';
+      const csrf_token = document.getElementsByName('csrfmiddlewaretoken')[0].value;
+      form.innerHTML = `
+        <input type="hidden" name="position" value="${position}">
+        <input type="hidden" name="csrfmiddlewaretoken" value="${csrf_token}">
+      `;
+      document.body.appendChild(form);
+      form.submit();
+    }));
+  </script>
+{% endblock %}

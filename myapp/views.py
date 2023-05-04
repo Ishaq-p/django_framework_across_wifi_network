@@ -55,28 +55,12 @@ def login_view(request):
         user = authenticate(request, username=username, password=password)
         if user is not None:
             login(request, user)
-            return redirect('register')
+            return redirect('tic_tac_toe')
         else:
             return render(request, 'login.html', {'error_message': 'Invalid login credentials'})
     else:
         return render(request, 'login.html')
     
-
-
-# def signup_view(request):
-#     if request.method == 'POST':
-#         form = SignUpForm(request.POST)
-#         if form.is_valid():
-#             user = form.save()
-#             user.refresh_from_db()
-#             user.first_name = form.cleaned_data.get('first_name')
-#             user.last_name = form.cleaned_data.get('last_name')
-#             user.email = form.cleaned_data.get('email')
-#             user.save()
-#             return redirect('home')
-#     else:
-#         form = SignUpForm()
-#     return render(request, 'signup.html', {'form': form})
 
 def signup(request):
     if request.method == 'POST':
@@ -95,34 +79,15 @@ def game(request):
 def dynamic_display(request):
     return render(request, 'dynamic_display.html')
 
-# def upload(request):
-#     return render(request, 'upload.html')
 
+def tic_tac_toe(request):
+    board = [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ']
+    player = 'X'
 
+    if request.method == 'POST':
+        position = int(request.POST.get('position'))
+        board[position] = player
+        player = 'O' if player == 'X' else 'X'
 
-
-# class FileUploadView(FormView):
-#     template_name = 'file_sharing/upload.html'
-#     form_class = FileForm
-
-#     def form_valid(self, form):
-#         form.save()
-#         return redirect('files')
-
-# class FileListView(ListView):
-#     template_name = 'file_sharing/files.html'
-#     model = File
-
-# class FileDownloadView(DetailView):
-#     model = File
-
-#     def get(self, request, *args, **kwargs):
-#         file = self.get_object()
-#         file_path = file.file.path
-#         with open(file_path, 'rb') as f:
-#             response = HttpResponse(f.read())
-#             response['Content-Type'] = 'application/octet-stream'
-#             response['Content-Disposition'] = 'attachment; filename=' + os.path.basename(file_path)
-#             return response
-
+    return render(request, 'tic_tac_toe.html', {'board': board})
 
