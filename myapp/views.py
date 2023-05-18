@@ -91,3 +91,6 @@ def tic_tac_toe(request):
 
     return render(request, 'tic_tac_toe.html', {'board': board})
 
+def home(request):
+    return render(request, 'index.html')
+
