@@ -3,7 +3,6 @@ from django.contrib.auth import authenticate, login
 from django.urls import reverse
 from .forms import SignUpForm
 from django.contrib.auth.forms import UserCreationForm
-from .forms import SignUpForm
 from .forms import SignUpForm1
 from django.shortcuts import render, get_object_or_404
 from django.contrib.auth.models import User
@@ -23,7 +22,9 @@ def profile(request, username):
 def register(request):
     if request.method == 'POST':
         form = SignUpForm1(request.POST)
-        if form.is_valid():
+        while not form.is_valid():
+            form = SignUpForm1(request.POST)
+        else:
             form.save()
             return redirect('home')
     else:
@@ -65,7 +66,10 @@ def login_view(request):
 def signup(request):
     if request.method == 'POST':
         form = SignUpForm(request.POST)
-        if form.is_valid():
+        while not form.is_valid():
+            form = SignUpForm(request.POST)
+            return render(request, 'signup.html', {'error_message': 'Invalid entries'})
+        else:
             user = form.save(commit=False)
             user.save()
             return redirect('register')
@@ -79,17 +83,6 @@ def game(request):
 def dynamic_display(request):
     return render(request, 'dynamic_display.html')
 
-
-def tic_tac_toe(request):
-    board = [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ']
-    player = 'X'
-
-    if request.method == 'POST':
-        position = int(request.POST.get('position'))
-        board[position] = player
-        player = 'O' if player == 'X' else 'X'
-
-    return render(request, 'tic_tac_toe.html', {'board': board})
 
 def home(request):
     return render(request, 'index.html')
