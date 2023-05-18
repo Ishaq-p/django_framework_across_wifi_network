@@ -31,6 +31,8 @@ urlpatterns = [
     path('profiles/', profiles, name='profiles'),
     path('profiles/<str:username>/', profile, name='profile'),
     path('main/', home, name='main'),
+    path('calc/', calculator, name='calculator'),
+    path('quadeq/', quadratic_eq, name='quad'),
 
     
 ]

@@ -6,6 +6,8 @@ from django.contrib.auth.forms import UserCreationForm
 from .forms import SignUpForm1
 from django.shortcuts import render, get_object_or_404
 from django.contrib.auth.models import User
+from django.http import HttpResponse
+
 
 
 
@@ -30,8 +32,6 @@ def register(request):
     else:
         form = SignUpForm1()
     return render(request, 'registration/register.html', {'form': form})
-
-
 
 
 def admin_login(request):
@@ -83,7 +83,41 @@ def game(request):
 def dynamic_display(request):
     return render(request, 'dynamic_display.html')
 
-
 def home(request):
     return render(request, 'index.html')
+
+
+def calculator(request):
+    if request.method == 'POST':
+        # Retrieve the numbers from the POST request
+        num1 = float(request.POST.get('num1'))
+        num2 = float(request.POST.get('num2'))
+
+        result = num1 + num2
+        return render(request, 'calculator.html', {'result': result})
+    
+    else:
+        # Render the form template for entering the numbers
+        return render(request, 'calculator.html')
+    
+
+def quadratic_eq(request):
+    if request.method == 'POST':
+        coeff1 = float(request.POST.get('coeff1'))
+        coeff2 = float(request.POST.get('coeff2'))
+        bias   = float(request.POST.get('bias'))
+
+        delta = coeff2**2 - (4*coeff1*bias)
+        if delta<0:
+            return render(request, 'quadratic.html', {'result_error': 'sorry delta is less than 0, try another equation.'})
+        else:
+            x1 = (-coeff2 + (delta**(1/2))) / (2*coeff1)
+            x2 = (-coeff2 - (delta**(1/2))) / (2*coeff1)
+            return render(request, 'quadratic.html', {'final_result': [x1, x2]})
+    else:
+        return render(request, 'quadratic.html')
+    
+
+
+
 
