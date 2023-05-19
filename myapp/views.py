@@ -7,6 +7,8 @@ from .forms import SignUpForm1
 from django.shortcuts import render, get_object_or_404
 from django.contrib.auth.models import User
 from django.http import HttpResponse
+from .forms import FileUploadForm
+
 
 
 
@@ -15,6 +17,7 @@ from django.http import HttpResponse
 def profiles(request):
     users = User.objects.all()
     return render(request, 'profiles.html', {'users': users})
+
 
 def profile(request, username):
     user = get_object_or_404(User, username=username)
@@ -77,11 +80,14 @@ def signup(request):
         form = SignUpForm()
     return render(request, 'signup.html', {'form': form})
 
+
 def game(request):
     return render(request, 'game.html')
 
+
 def dynamic_display(request):
     return render(request, 'dynamic_display.html')
+
 
 def home(request):
     return render(request, 'index.html')
@@ -107,6 +113,9 @@ def quadratic_eq(request):
         coeff2 = float(request.POST.get('coeff2'))
         bias   = float(request.POST.get('bias'))
 
+        if coeff1==0:
+            return render(request, 'quadratic.html', {'final_result': "Sorry (coeff1) can't be 0, try another equation."})
+
         delta = coeff2**2 - (4*coeff1*bias)
         if delta<0:
             return render(request, 'quadratic.html', {'result_error': 'sorry delta is less than 0, try another equation.'})
@@ -116,6 +125,38 @@ def quadratic_eq(request):
             return render(request, 'quadratic.html', {'final_result': [x1, x2]})
     else:
         return render(request, 'quadratic.html')
+    
+
+def faceRecog(request):
+    if request.method == 'POST' and 'image' in request.FILES:
+        image = request.FILES['image']
+        # Perform any desired processing or save the image to the database
+        # You can access the image using `image.read()` or `image.chunks()`
+        return render(request, 'faceRecog.html', {'image': image})
+    return render(request, 'upload.html')
+
+
+def upload_file(request):
+    if request.method == 'POST':
+        form = FileUploadForm(request.POST, request.FILES)
+        if form.is_valid():
+            uploaded_file = form.cleaned_data['file']
+            save_file(uploaded_file.read(), uploaded_file.name)
+            # Perform further processing or save the file
+            if uploaded_file: bool = True
+
+            return render(request, 'upload_file.html', {'bool': bool})
+    else:
+        form = FileUploadForm()
+    return render(request, 'upload_file.html', {'form': form})
+
+
+def save_file(content, filename):
+    with open('media/'+filename, 'wb') as file:
+        file.write(content)
+    file.close()
+
+
     
 
 

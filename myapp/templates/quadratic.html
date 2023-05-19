@@ -2,6 +2,10 @@
 
 {% block content %}
 <h1>The Quadratic Equation calculator</h1>
+
+<a id="calculator_login" href="{% url 'login' %}" >Login</a><br>
+<a id="calculator_signup" href="{% url 'signup' %}" >no account? signup</a>
+
 <p>ax<sup>2</sup> + bx + c</p>
 <p>a: coeff<sub>1</sub>  &nbsp&nbsp   b: coeff<sub>2</sub>  &nbsp&nbsp  c: bias</p>
 
@@ -9,23 +13,33 @@
 
 <form method="POST" action="{% url 'quad' %}">
     {% csrf_token %}
-    <label for="coeff1" id="entries">coeeficient<sub>1</sub>:</label>
-    <input type="number" name="coeff1" required>
+        <label for="coeff1" id="entries">coeeficient<sub>1</sub>:</label>
+        <input type="number" name="coeff1" required>
     <br>
-    <label for="coeff2" id="entries">coeeficient<sub>2</sub>:</label>
-    <input type="number" name="coeff2" required>
+        <label for="coeff2" id="entries">coeeficient<sub>2</sub>:</label>
+        <input type="number" name="coeff2" required>
     <br>
-    <label for="bias" id="entries">bias:</label>
-    <input type="number" name="bias" required>
+        <label for="bias" id="entries">bias:</label>
+        <input type="number" name="bias" required>
     <br>
-    <button type="submit">Calculate</button>
+        <button type="submit">Calculate</button>
+    <br>
 
     {% if result_error %}
         <p><strong>{{ result_error }}</strong></p>
     
     {% elif final_result %}
         <p id="final_result">[x<sub>1</sub>, &nbsp x<sub>2</sub>] &nbsp = &nbsp {{ final_result }}</p>
-    {% endif %}   
+    {% endif %}
+
+    <br>
+    <br>
+        <h2>Other Calculators:</h2>
+    <br>
+        <a href="{% url 'calculator' %}" >Sum</a>
+    <br>
+
+       
 </form>
 
 

@@ -2,35 +2,36 @@
 
 {% block content %}
 <h1>The Calculator</h1>
-<p>enjoy your Calculator...</p>
 
-<!-- <form method="post">
-    {% csrf_token %}
-    <div class="form-group">
-        <label for="number1">Number1 & Number2:</label>
-        <input type="text" name="number1" id="number1" class="form-control">
-        <input type="text" name="number2" id="number2" class="form-control">
-        {% if result1 %}
-            <p>{{ result1 }}</p>
-        {% endif %}
-   </div>
-</form>
-</form> -->
+<a id="calculator_login" href="{% url 'login' %}" >Login</a><br>
+<a id="calculator_signup" href="{% url 'signup' %}" >no account? signup</a>
+
+<p>enjoy your Calculator...</p>
 
 <!-- add_numbers_form.html -->
 <form method="POST" action="{% url 'calculator' %}">
     {% csrf_token %}
-    <label for="num1" id="entries">Number 1:</label>
-    <input type="number" name="num1" required>
+        <label for="num1" id="entries">Number 1:</label>
+        <input type="number" name="num1" required>
     <br>
-    <label for="num2" id="entries">Number 2:</label>
-    <input type="number" name="num2" required>
+        <label for="num2" id="entries">Number 2:</label>
+        <input type="number" name="num2" required>
     <br>
-    <button type="submit">Add Numbers</button>
-
+        <button type="submit">Add Numbers</button>
+    <br>
     {% if result %}
         <p id="final_result">The sum is <em>{{ result }}</em></p>
-    {% endif %}   
+    {% endif %} 
+
+    <br>
+    <br>
+        <h2>Other Calculators:</h2>
+    <br>
+        <a href="{% url 'quad' %}" >Quadratic Equations</a>
+    <br>  
+    
+
+      
 </form>
 
 {% endblock%}

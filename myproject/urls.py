@@ -17,6 +17,10 @@ Including another URLconf
 from django.urls import path
 from myapp.views import *
 from django.contrib import admin
+from django.conf import settings
+from django.conf.urls.static import static
+import os
+from django.contrib import admin
 
 
 urlpatterns = [
@@ -33,6 +37,8 @@ urlpatterns = [
     path('main/', home, name='main'),
     path('calc/', calculator, name='calculator'),
     path('quadeq/', quadratic_eq, name='quad'),
+    path('faceRecog/', faceRecog, name='faceRecog'),
+    path('upload/', upload_file, name='upload_file'),
 
     
 ]
