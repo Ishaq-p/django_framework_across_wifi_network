@@ -6,5 +6,28 @@
 
 <h1>The Horner's Method</h1>
 
+    <form method="POST" action="{% url 'horners' %}">
+        {% csrf_token %}
+
+        <label for="alpha">Alpha:</label>
+        <input type="number" step="any" name="alpha"><br>
+
+        <label for="coefs">Coefficients:</label>
+        <input type="text" name="coefs"><br>
+
+        <button type="submit">Calculate</button>
+
+    </form>
+
+    {% if result %}
+    <ol>
+        {% for item in result %}
+            <li><p>{{ item.0 }} || {{ item.1 }} || {{ item.2 }}</p></li>
+        {% endfor %}
+    </ol>
+  
+{% endif %}
+
+
 
 {% endblock %}

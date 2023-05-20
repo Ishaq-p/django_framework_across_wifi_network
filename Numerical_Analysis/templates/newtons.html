@@ -6,5 +6,32 @@
 
 <h1>The Newton's Method</h1>
 
+<form method="POST" action="{% url 'newtons' %}">
+    {% csrf_token %}
+    <label for="x0">x0:</label>
+    <input type="number" step="any" name="x0"><br>
+
+    <label for="criterion">criterion:</label>
+    <input type="number" step="any" name="criterion"><br>
+
+    <label for="float_digits">float digits:</label>
+    <input type="number" name="float_digits"><br>
+
+    <label for="func">function:</label>
+    <input type="text" name="func"><br>
+
+
+    <button type="submit">Calculate</button>
+</form>
+
+{% if result %}
+    <ol>
+        {% for item in result %}
+            <li><p>{{ item.0 }} || {{ item.1 }} || {{ item.2 }} || {{ item.3 }} || {{ item.4 }}</p></li>
+        {% endfor %}
+    </ol>
+   
+{% endif %}
+
 
 {% endblock %}

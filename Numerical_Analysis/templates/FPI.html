@@ -6,5 +6,32 @@
 
 <h1>The FPI Method</h1>
 
+<form method="POST" action="{% url 'FPI' %}">
+    {% csrf_token %}
+
+    <label for="a">x0:</label>
+    <input type="number" step="any" name="x0"><br>
+
+    <label for="criterion">criterion:</label>
+    <input type="number" step="any" name="criterion"><br>
+
+    <label for="float_digits">float digits:</label>
+    <input type="number" name="float_digits"><br>
+
+    <label for="func">function:</label>
+    <input type="text" name="func"><br>
+
+
+    <button type="submit">Calculate</button>
+</form>
+
+{% if result %}
+    <ol>
+        {% for item in result %}
+            <li> {{ item }} <li>
+        {% endfor %}
+    </ol>
+  
+{% endif %}
 
 {% endblock %}

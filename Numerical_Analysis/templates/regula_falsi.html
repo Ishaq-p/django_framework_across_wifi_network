@@ -2,7 +2,41 @@
 
 {% block content %}
 
+<a id="home_button" href="{% url 'home1' %}" >Homepage</a><br>
+
 <h1>The Regula Falsi Method</h1>
+
+<form method="POST" action="{% url 'regula_falsi' %}">
+    {% csrf_token %}
+    <label for="x0">x0:</label>
+    <input type="number" step="any" name="x0"><br>
+
+    <label for="x1">x1:</label>
+    <input type="number" step="any" name="x1"><br>
+
+    <label for="criterion">Criterion:</label>
+    <input type="number" step="any" name="criterion"><br>
+
+    <label for="float_digits">float digits:</label>
+    <input type="number" name="float_digits"><br>
+
+    <label for="func">function:</label>
+    <input type="text" name="func"><br>
+
+
+    <button type="submit">Calculate</button>
+
+</form>
+
+{% if result %}
+
+    <ol>
+        {% for item in result %}
+            <li><p>{{ item.0 }} || {{ item.1 }} || {{ item.2 }} || {{ item.3 }} || {{ item.4 }} || {{ item.5 }} || {{ item.6 }} || {{ item.7 }}</p></li>
+        {% endfor %}
+    </ol>
+
+{% endif %}
 
 
 {% endblock %}

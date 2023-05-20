@@ -9,10 +9,10 @@
 <form method="POST" action="{% url 'bisection' %}">
     {% csrf_token %}
     <label for="a">a:</label>
-    <input type="number" name="a"><br>
+    <input type="number" step="any" name="a"><br>
 
     <label for="b">b:</label>
-    <input type="number" name="b"><br>
+    <input type="number" step="any" name="b"><br>
 
     <label for="tolerance">p0:</label>
     <!-- <input type="number" name="tolerance"> -->
@@ -24,15 +24,19 @@
     <label for="tolerance">tol.:</label>
     <input type="number" step="any" name="tolerance"><br>
 
+    <label for="float_digits">Floating Digits:</label>
+    <input type="number" name="float_digits"><br>
+
+
     <button type="submit">Calculate</button>
 </form>
 
 {% if result %}
-    <ul>
+    <ol>
         {% for item in result %}
-            <li>{{ item }}</li>
+            <li><p>{{ item.0 }} || {{ item.1 }} || {{ item.2 }} || {{ item.3 }} || {{ item.4 }}</p></li>
         {% endfor %}
-    </ul>
+    </ol>
   
 {% endif %}
 
