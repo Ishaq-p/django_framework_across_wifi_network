@@ -12,6 +12,8 @@ from .forms import FileUploadForm
 
 
 
+def home(request):
+    return render(request, 'index.html')
 
 
 def profiles(request):
@@ -22,19 +24,6 @@ def profiles(request):
 def profile(request, username):
     user = get_object_or_404(User, username=username)
     return render(request, 'profile.html', {'user': user})
-
-
-def register(request):
-    if request.method == 'POST':
-        form = SignUpForm1(request.POST)
-        while not form.is_valid():
-            form = SignUpForm1(request.POST)
-        else:
-            form.save()
-            return redirect('home')
-    else:
-        form = SignUpForm1()
-    return render(request, 'registration/register.html', {'form': form})
 
 
 def admin_login(request):
@@ -75,22 +64,10 @@ def signup(request):
         else:
             user = form.save(commit=False)
             user.save()
-            return redirect('register')
+            return redirect('home')
     else:
         form = SignUpForm()
     return render(request, 'signup.html', {'form': form})
-
-
-def game(request):
-    return render(request, 'game.html')
-
-
-def dynamic_display(request):
-    return render(request, 'dynamic_display.html')
-
-
-def home(request):
-    return render(request, 'index.html')
 
 
 def calculator(request):
@@ -125,15 +102,6 @@ def quadratic_eq(request):
             return render(request, 'quadratic.html', {'final_result': [x1, x2]})
     else:
         return render(request, 'quadratic.html')
-    
-
-def faceRecog(request):
-    if request.method == 'POST' and 'image' in request.FILES:
-        image = request.FILES['image']
-        # Perform any desired processing or save the image to the database
-        # You can access the image using `image.read()` or `image.chunks()`
-        return render(request, 'faceRecog.html', {'image': image})
-    return render(request, 'upload.html')
 
 
 def upload_file(request):
@@ -155,6 +123,11 @@ def save_file(content, filename):
     with open('media/'+filename, 'wb') as file:
         file.write(content)
     file.close()
+
+
+def Num_Analysis(request):
+    # return HttpResponse("Hello, world. You're at the NUM_ANALYSIS index.")
+    return render(request, 'index_NA.html')
 
 
     

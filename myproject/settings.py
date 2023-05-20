@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'myapp',
+    'Numerical_Analysis',
 ]
 
 MIDDLEWARE = [
@@ -56,7 +57,8 @@ ROOT_URLCONF = 'myproject.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [BASE_DIR / 'myapp/templates'],
+        'DIRS': [BASE_DIR / 'myapp/templates'
+                 ,BASE_DIR / 'Numerical_Analysis/templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [

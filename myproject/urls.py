@@ -17,28 +17,25 @@ Including another URLconf
 from django.urls import path
 from myapp.views import *
 from django.contrib import admin
-from django.conf import settings
-from django.conf.urls.static import static
-import os
 from django.contrib import admin
+from django.urls import path, include
 
 
 urlpatterns = [
-    path('', login_view, name='home'),
+    path('', home, name='home'),
     path('admin_login/', admin_login, name='admin_login'),
     path('login/', login_view, name='login'),
     path('admin/', admin.site.urls),
     path('signup/', signup, name='signup'),
-    path('game/', game, name='game'),
-    path('display/', dynamic_display, name='display'),
-    path('register/', register, name='register'),
     path('profiles/', profiles, name='profiles'),
     path('profiles/<str:username>/', profile, name='profile'),
     path('main/', home, name='main'),
     path('calc/', calculator, name='calculator'),
     path('quadeq/', quadratic_eq, name='quad'),
-    path('faceRecog/', faceRecog, name='faceRecog'),
     path('upload/', upload_file, name='upload_file'),
+    path('N_Analysis/', Num_Analysis, name='Num_Analysis'),
+
+    path('N_Analysis/', include('Numerical_Analysis.urls')),
 
     
 ]
