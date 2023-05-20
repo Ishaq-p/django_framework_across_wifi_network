@@ -1,10 +1,13 @@
 {% extends 'base.html' %}
 
 {% block content %}
+
+<a id="home_button" href="{% url 'main' %}" >Homepage</a><br>
+
   <h2>Profiles</h2>
   <ul>
     {% for user in users %}
-      <li><a href="{% url 'profile' user.username %}">{{ user.username }}</a></li>
+      <li><a id="Home_and_Profile_links" href="{% url 'profile' user.username %}">{{ user.username }}</a></li>
     {% endfor %}
   </ul>
 {% endblock %}

@@ -1,6 +1,9 @@
 {% extends 'base.html' %}
 
 {% block content %}
+
+<a id="home_button" href="{% url 'main' %}" >Homepage</a><br>
+
   <div class="header">
     <h2>Login as Admin</h2>
     {% if error_message %}

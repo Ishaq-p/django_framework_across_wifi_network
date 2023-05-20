@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<a id="home_button" href="{% url 'home' %}" >Main Homepage</a><br>
+
+        <div class="container">
+            <h1>MyProject</h1>
+            <p><strong>MyProject</strong> is a <em>simple Django</em> app for tracking projects.</p>
+            
+            <div class="home_buttons_container">
+                <a id="Home_and_Profile_links" href="{% url 'bisection' %}" >Bisection</a><br>
+                <a id="Home_and_Profile_links" href="{% url 'horners' %}"   >Horner's</a><br>
+                <a id="Home_and_Profile_links" href="{% url 'FPI' %}"       >FPI</a><br>
+                <a id="Home_and_Profile_links" href="{% url 'newtons' %}"   >Newton's</a><br>
+                <a id="Home_and_Profile_links" href="#" >Secant</a><br>
+                <a id="Home_and_Profile_links" href="#" >Regula Falsi</a><br>
+                <a id="Home_and_Profile_links" href="#" >Falsi + FPI</a><br>
+                <a id="Home_and_Profile_links" href="#" >Lagrange Polynomials</a><br>
+                <a id="Home_and_Profile_links" href="#" >Diff. with Taylor Poly.</a><br>
+                <a id="Home_and_Profile_links" href="#" >Diff. with Lagrange</a><br>
+                <a id="Home_and_Profile_links" href="#" ></a>.<br>
+                <a id="Home_and_Profile_links" href="#" ></a>.<br>
+            </div>
+        </div>
+
+{% endblock %}

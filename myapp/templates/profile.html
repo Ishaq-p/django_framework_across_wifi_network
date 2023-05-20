@@ -1,6 +1,12 @@
 {% extends 'base.html' %}
 
 {% block content %}
+
+<div class="link_container">
+  <a id="home_buttons" href="{% url 'profiles' %}" >Profiles</a>
+  <a id="home_button" href="{% url 'main' %}" >Homepage</a><br>
+</div>
+
   <h2>{{ user.username }}'s Profile</h2>
   <p>First Name: {{ user.first_name }}</p>
   <p>Last Name: {{ user.last_name }}</p>

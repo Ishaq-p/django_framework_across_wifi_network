@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<a id="home_button" href="{% url 'home1' %}" >Homepage</a><br>
+
+<h1>The Bisection Method</h1>
+
+<form method="POST" action="{% url 'bisection' %}">
+    {% csrf_token %}
+    <label for="a">a:</label>
+    <input type="number" name="a"><br>
+
+    <label for="b">b:</label>
+    <input type="number" name="b"><br>
+
+    <label for="tolerance">p0:</label>
+    <!-- <input type="number" name="tolerance"> -->
+    <input type="number" step="any" name="tolerance"><br>
+
+    <label for="function">function:</label>
+    <input type="text" name="function"><br>
+
+    <label for="tolerance">tol.:</label>
+    <input type="number" step="any" name="tolerance"><br>
+
+    <button type="submit">Calculate</button>
+</form>
+
+{% if result %}
+    <ul>
+        {% for item in result %}
+            <li>{{ item }}</li>
+        {% endfor %}
+    </ul>
+  
+{% endif %}
+
+
+
+{% endblock %}

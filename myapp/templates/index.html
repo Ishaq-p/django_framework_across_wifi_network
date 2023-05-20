@@ -1,12 +1,20 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="utf-8">
-        <title>MyProject</title>
-    </head>
-    <body>
+{% extends 'base.html' %}
+
+{% block content %}
+
         <div class="container">
             <h1>MyProject</h1>
             <p><strong>MyProject</strong> is a <em>simple Django</em> app for tracking projects.</p>
+            
+            <div class="home_buttons_container">
+                <a id="Home_and_Profile_links" href="{% url 'login' %}"         >Login              </a><br>
+                <a id="Home_and_Profile_links" href="{% url 'signup' %}"        >no account? signup </a><br>
+                <a id="Home_and_Profile_links" href="{% url 'profiles' %}"      >profiles           </a><br>
+                <a id="Home_and_Profile_links" href="{% url 'calculator' %}"    >calc               </a><br>
+                <a id="Home_and_Profile_links" href="{% url 'quad' %}"          >quadeq             </a><br>
+                <a id="Home_and_Profile_links" href="{% url 'upload_file' %}"   >upload             </a><br>
+                <a id="Home_and_Profile_links" href="{% url 'Num_Analysis' %}"  >Num-Analysis Calc  </a><br>
+            </div>
         </div>
-</html>
+
+{% endblock %}
