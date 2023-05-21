@@ -12,6 +12,8 @@ urlpatterns = [
     path('newtons/',      newtons,      name='newtons'),
     path('secant/',       secant,       name='secant'),
     path('regula_falsi/', regula_falsi, name='regula_falsi'),
+    path('falsi_fpi/', falsi_fpi, name='falsi_fpi'),
+
 
     
 ]
