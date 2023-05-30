@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<a id="home_button" href="{% url 'home1' %}" >Homepage</a><br>
+
+<h1>The Numerical Differentiation: </h1>
+
+<form method="POST" action="{% url 'num_diff' %}">
+    {% csrf_token %}
+    <label for="x0">x0:</label>
+    <input type="number" step="any" name="x0"><br>
+
+    <label for="h">h:</label>
+    <input type="number" step="any" name="h"><br>
+
+    <label for="order">Differentiation Order (1,2):</label>
+    <input type="number" name="order"><br>
+
+    <label for="float_digits">float digits:</label>
+    <input type="number" name="float_digits"><br>
+
+    <label for="func">function:</label>
+    <input type="text" name="func"><br>
+
+
+    <button type="submit">Calculate</button>
+</form>
+
+{% if result %}
+    <ul>
+        {% for item in result %}
+            <li><p>{{ item }}</p></li>
+        {% endfor %}
+    </ul>
+   
+{% endif %}
+
+
+{% endblock %}
