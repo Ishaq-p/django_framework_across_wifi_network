@@ -7,9 +7,16 @@ from .newton import newtons as newtons1
 from .secant import secant as secant1
 from .regula_falsi import regular_falsi as regular_falsi1
 from .falsi_fpi import falsi_fpi as falsi_fpi1
+from .num_diff import num_diff as num_diff1
+from .lagrange_poly import lagrange_poly as lagrange_poly1
+from .Rectangle_rule import Rectangle as rectangle_rule1
+from .Trapezoidal_rule import trapezoidal as trapezoidal_rule1
+from .Simpson_rule import simpson as simpson_rule1
+
 # from sympy import *
 from sympy import symbols, sympify, lambdify
 import math
+import numpy as np
 
 
 
@@ -161,3 +168,104 @@ def falsi_fpi(request):
         return render(request, 'falsi_FPI.html', context)
 
     return render(request, 'falsi_FPI.html')
+
+
+def lagrange_poly(request):
+    if request.method == 'POST':
+
+        x = request.POST.get('x').split(',')
+        y = request.POST.get('y').split(',')
+        x = [float(i) for i in x]
+        y = [float(i) for i in y]
+        x0 = float(request.POST.get('x0'))
+        f0 = float(request.POST.get('f0'))
+        float_digits = int(request.POST.get('float_digits'))
+
+        context = {
+            'result': lagrange_poly1(x, y, x0, f0, float_digits),
+        }
+        return render(request, 'lagrange_poly.html', context)
+
+    return render(request, 'lagrange_poly.html')
+
+
+def num_diff(request):
+    if request.method == 'POST':
+
+        x0 = float(request.POST.get('x0'))
+        h = float(request.POST.get('h'))
+        order = int(request.POST.get('order'))
+        float_digits = int(request.POST.get('float_digits'))
+
+        x = symbols('x')
+        func = sympify(request.POST.get('func'))
+        func = lambdify(x, func)
+
+        context = {
+            'result': num_diff1(x0, h, order, float_digits, func),
+        }
+        return render(request, 'num_diff.html', context)
+    return render(request, 'num_diff.html')
+
+
+def rectangle_rule(request):
+    if request.method == 'POST':
+        
+        a = float(request.POST.get('a'))
+        b = float(request.POST.get('b'))
+        n = int(request.POST.get('n'))
+
+        float_digits = int(request.POST.get('float_digits')) 
+
+        x = symbols('x')
+        func = sympify(request.POST.get('func'))
+        func = lambdify(x, func)
+
+        context = {
+            'result': rectangle_rule1(a, b, n, float_digits, func),
+        }
+        return render(request, 'rectangle_rule.html', context)
+
+    return render(request, 'rectangle_rule.html')
+
+
+def trapezoidal_rule(request):
+    if request.method == 'POST':
+        
+        a = float(request.POST.get('a'))
+        b = np.pi/2 #float(request.POST.get('b'))
+        n = int(request.POST.get('n'))
+
+        float_digits = int(request.POST.get('float_digits'))
+
+        x = symbols('x')
+        func = sympify(request.POST.get('func'))
+        func = lambdify(x, func)
+
+        context = {
+            'result': trapezoidal_rule1(a, b, n, float_digits, func)
+        }
+        return render(request, 'trapezoidal_rule.html', context)
+
+    return render(request, 'trapezoidal_rule.html')
+
+
+def simpson_rule(request):
+    if request.method == 'POST':
+        
+        a = float(request.POST.get('a'))
+        b = np.pi/2#float(request.POST.get('b'))
+        n = int(request.POST.get('n'))
+
+        float_digits = int(request.POST.get('float_digits'))
+
+        x = symbols('x')
+        func = sympify(request.POST.get('func'))
+        func = lambdify(x, func)
+
+        context = {
+            'result': simpson_rule1(a, b, n, float_digits, func),
+        }
+        return render(request, 'simpson_rule.html', context)
+
+    return render(request, 'simpson_rule.html')
