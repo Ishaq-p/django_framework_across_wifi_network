@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<a id="home_button" href="{% url 'home1' %}" >Homepage</a><br>
+
+<h1>The Composite Tranpezoidal Rule</h1>
+
+<form method="POST" action="{% url 'trapezoidal_rule' %}">
+    {% csrf_token %}
+    <label for="a">a:</label>
+    <input type="number" step="any" name="a"><br>
+
+    <label for="b">b:</label>
+    <input type="number" step="any" name="b"><br>
+
+    <label for="n">n:</label>
+    <input type="number" step="any" name="n"><br>
+
+    <label for="float_digits">float digits:</label>
+    <input type="number" name="float_digits"><br>
+
+    <label for="func">function:</label>
+    <input type="text" name="func"><br>
+
+
+    <button type="submit">Calculate</button>
+</form>
+
+{% if result %}
+    <ul>
+        {% for item in result %}
+            <li><p>{{ item.0 }}|| {{ item.1 }}  {{ item.2 }} || {{ item.3 }} || {{ item.4 }}</p></li>
+        {% endfor %}
+    </ul>
+   
+{% endif %}
+
+
+{% endblock %}
