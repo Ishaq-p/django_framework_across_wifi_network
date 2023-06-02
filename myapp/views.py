@@ -48,7 +48,7 @@ def login_view(request):
         user = authenticate(request, username=username, password=password)
         if user is not None:
             login(request, user)
-            return redirect('tic_tac_toe')
+            return redirect('home')
         else:
             return render(request, 'login.html', {'error_message': 'Invalid login credentials'})
     else:
