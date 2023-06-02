@@ -15,6 +15,11 @@
                 <a id="Home_and_Profile_links" href="{% url 'upload_file' %}"   >upload             </a><br>
                 <a id="Home_and_Profile_links" href="{% url 'Num_Analysis' %}"  >Num-Analysis Calc  </a><br>
             </div>
+            {% if user.is_authenticated %}
+                <p>Hi {{ user.username }}!</p>
+            {% else %}
+                <p>You are not logged in</p>
+            {% endif %}
         </div>
 
 {% endblock %}
