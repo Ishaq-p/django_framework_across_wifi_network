@@ -10,4 +10,24 @@
       <li><a id="Home_and_Profile_links" href="{% url 'profile' user.username %}">{{ user.username }}</a></li>
     {% endfor %}
   </ul>
+
+  <div class="row">
+    {% for user in users %}
+      <div class="column">
+        <div class="card">
+          <img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png" alt="Jane" style="width:20%">
+          <div class="container">
+            <h2>{{ user.username }}</h2>
+            <p class="title">Std User</p>
+            <p>Some text that describes me lorem ipsum ipsum lorem.</p>
+            <p>{{ user.username }}@gmail.com</p>
+            <p><a id="Home_and_Profile_links" href="{% url 'profile' user.username %}"><button class="button">Contact info</button></a></p>
+          </div>
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+
+
+
 {% endblock %}

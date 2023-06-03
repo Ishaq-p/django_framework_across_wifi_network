@@ -13,7 +13,13 @@
     <form method="post" enctype="multipart/form-data">
     {% csrf_token %}
     {{ form.as_p }}
-    <button type="submit">Upload File</button>
+
+    {% if user.is_authenticated %}
+        <button type="submit">Upload File ({{ user.username }})</button>
+    {% else %}
+        <p><strong>You are not logged in </strong>(<em>the upload button will only display when you're logged in.</em>>)</p>
+    {% endif %}
+
     </form>
     {% if bool == 1 %}
         <img src="Snapchat-269265218.jpg" alt="Uploaded Image">

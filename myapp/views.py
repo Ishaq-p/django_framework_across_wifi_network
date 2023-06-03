@@ -8,12 +8,18 @@ from django.shortcuts import render, get_object_or_404
 from django.contrib.auth.models import User
 from django.http import HttpResponse
 from .forms import FileUploadForm
+from django.conf import settings
+from django.contrib.auth import logout
+from django.contrib.auth.decorators import login_required
 
 
 
 
 def home(request):
-    return render(request, 'index.html')
+    context = {
+        'MEDIA_URL': settings.MEDIA_URL,
+    }
+    return render(request, 'index.html', context)
 
 
 def profiles(request):
@@ -68,6 +74,11 @@ def signup(request):
     else:
         form = SignUpForm()
     return render(request, 'signup.html', {'form': form})
+
+
+def logout_view(request):
+    logout(request)
+    return redirect('home')
 
 
 def calculator(request):
