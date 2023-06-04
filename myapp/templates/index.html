@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 
 {% block content %}
-
+{% load static %}
         <div class="container3">
             <img class="photo" src="{{ MEDIA_URL }}6794A544-9827-409C-9CDF-49E9A46FB3AA.jpeg" alt="Image">
         </div>
@@ -11,28 +11,46 @@
             <p><strong>MyProject</strong> is a <em>simple Django</em> app for tracking projects.</p>
             
             <div class="home_buttons_container2">
-                <a id="Home_and_Profile_links" href="{% url 'login' %}"         >Login              </a><br>
-                <a id="Home_and_Profile_links" href="{% url 'signup' %}"        >no account? signup </a><br>
-                <a id="Home_and_Profile_links" href="{% url 'profiles' %}"      >profiles           </a><br>
-                <a id="Home_and_Profile_links" href="{% url 'calculator' %}"    >calc               </a><br>
-                <a id="Home_and_Profile_links" href="{% url 'quad' %}"          >quadeq             </a><br>
-                <a id="Home_and_Profile_links" href="{% url 'upload_file' %}"   >upload             </a><br>
-                
-                
-                {% if user.is_authenticated %}
-                    <a id="Home_and_Profile_links" href="{% url 'Num_Analysis' %}"  >Num-Analysis Calc  </a><br>
-                {% else %}
-                <br><a id="Home_and_Profile_links" href="#"  >Num-Analysis Calc</a><p><em><strong>Num-Analysis Calc</strong>'ll only work if your're logged in.</em></p><br>
-                {% endif %}
+                <!-- <a id="Home_and_Profile_links" href="{% url 'login' %}"         >Login              </a><br>
+                <a id="Home_and_Profile_links" href="{% url 'signup' %}"        >no account? signup </a><br> -->
 
-
+                <div class="main_page_divs">
+                    <a id="Home_and_Profile_links" href="{% url 'profiles' %}"      >profiles           </a><br>
                 </div>
+                
+                <div class="main_page_divs">
+                    <a id="Home_and_Profile_links" href="{% url 'calculator' %}"    >calc               </a><br>
+                </div>
+                
+                <div class="main_page_divs">
+                    <a id="Home_and_Profile_links" href="{% url 'quad' %}"          >quadeq             </a><br>
+                </div>
+
+                <div class="main_page_divs">
+                    <a id="Home_and_Profile_links" href="{% url 'upload_file' %}"   >upload             </a><br>
+                </div>
+                
+                <div class="main_page_divs">
+                    {% if user.is_authenticated %}
+                        <a id="Home_and_Profile_links" href="{% url 'Num_Analysis' %}"  >Num-Analysis Calc  </a><br>
+                    {% else %}
+                    <br><a id="Home_and_Profile_links" href="#"  >Num-Analysis Calc</a><p><em><strong>Num-Analysis Calc</strong>'ll only work if your're logged in.</em></p><br>
+                    {% endif %}
+                </div>
+
+
+            </div>
+
+            
             {% if user.is_authenticated %}
-                <p>Hi {{ user.username }}!</p>
-                <a id="Home_and_Profile_links" href="{% url 'logout' %}" >logout</a>
+                <p>Hi <strong>{{ user.username }}</strong>!</p>
+                <div class="main_page_divs_logout">
+                    <a id="Home_and_Profile_links" href="{% url 'logout' %}" >logout</a>
+                </div>
             {% else %}
                 <p>You are not logged in</p>
             {% endif %}
+            
 
             
                

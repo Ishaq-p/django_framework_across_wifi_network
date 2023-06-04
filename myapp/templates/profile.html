@@ -7,8 +7,14 @@
   <a id="home_button" href="{% url 'main' %}" >Homepage</a><br>
 </div>
 
-  <h2>{{ user.username }}'s Profile</h2>
-  <p>First Name: {{ user.first_name }}</p>
-  <p>Last Name: {{ user.last_name }}</p>
-  <p>Email: {{ user.email }}</p>
+<div class="profile_items">
+  <img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png" alt="img"><br>
+
+  <div class="profile_items_info">
+    <p>First Name: <strong>{{ user.first_name }}</strong></p>
+    <p>Last Name: <strong>{{ user.last_name }}</strong></p>
+    <p>Email: <strong>{{ user.email }}</strong></p>
+  </div>
+
+</div>
 {% endblock %}
