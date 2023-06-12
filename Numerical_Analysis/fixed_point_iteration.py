@@ -34,7 +34,7 @@ def fixed_point(x0, criterion, float_digits, func):
         x1 = func(x0)
         RE = RE_(round(rnd(x1, float_digits)[-1], 12), round(rnd(x0, float_digits)[-1], 12))
 
-        fpi_list.append((interations, rnd(x0, float_digits)[-1], rnd(x1, float_digits)[-1], RE))
+        fpi_list.append((interations, rnd(x0, float_digits)[-1], rnd(x1, float_digits)[-1], f"{RE:.{float_digits-1}e}"))
         
     y_ = 6*x1
     pi = np.pi

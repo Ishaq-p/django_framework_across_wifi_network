@@ -19,7 +19,7 @@ def regular_falsi(a, b, epsilon, float_digits, func):
     p=a
 
     # while RE >= epsilon:
-    while abs(f(p)) >= epsilon:
+    while abs(f(p)) > epsilon:
 
         p = xINT(a, b)
         RE = RE_(round(rnd(p, float_digits)[-1], 10), round(rnd(p0, float_digits)[-1], 10))

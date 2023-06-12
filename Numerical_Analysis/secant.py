@@ -16,7 +16,7 @@ def secant(x0, x1, epsilon, float_digits, f):
                             round(rnd(x0, float_digits)[-1], 10), 
                             round(rnd(x1, float_digits)[-1], 10), 
                             round(rnd(x2, float_digits)[-1], 10), 
-                            RE
+                            f"{RE:.{float_digits-1}e}"
                         ))
         x0 = x1
         x1 = x2

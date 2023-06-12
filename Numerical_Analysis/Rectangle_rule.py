@@ -23,12 +23,13 @@ def Rectangle(a,b,n, flt_digits, f):
     for i in range(n):
         sum += f(x)
         if i in [0,5,10,15,19]:
-            result.append((i,': \t', round(rnd(x, flt_digits)[-1], 10), round(rnd(f(x), flt_digits)[-1], 10)))
+            result.append((i, round(rnd(x, flt_digits)[-1], 10), round(rnd(f(x), flt_digits)[-1], 10)))
         x += h
 
     sum = round(rnd(sum * h, flt_digits)[-1], 10)
     origianl_sum = round(rnd(integrate.quad(f,a,b)[0], flt_digits)[-1], 12)
-    RE_ = round(rnd(RE(origianl_sum, sum), flt_digits)[-1], 8)
+    # RE_ = round(rnd(RE(origianl_sum, sum), flt_digits)[-1], 15)
+    RE_ = f"{RE(origianl_sum, sum): .{flt_digits-1}e}"
     SD = sd(RE_)[-1]
 
     result.append(("numerical integrate: ", sum))

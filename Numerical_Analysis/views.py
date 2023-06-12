@@ -87,7 +87,7 @@ def newtons(request):
     if request.method == 'POST':
 
         x0 = float(request.POST.get('x0'))
-        criterion = float(request.POST.get('criterion'))
+        criterion = 1e-6 #float(request.POST.get('criterion'))
         float_digits = int(request.POST.get('float_digits'))
 
         x = symbols('x')
@@ -192,7 +192,7 @@ def lagrange_poly(request):
 def num_diff(request):
     if request.method == 'POST':
 
-        x0 = float(request.POST.get('x0'))
+        x0 = np.pi/4 #float(request.POST.get('x0'))
         h = float(request.POST.get('h'))
         order = int(request.POST.get('order'))
         float_digits = int(request.POST.get('float_digits'))
@@ -254,7 +254,7 @@ def simpson_rule(request):
     if request.method == 'POST':
         
         a = float(request.POST.get('a'))
-        b = np.pi/2#float(request.POST.get('b'))
+        b = float(request.POST.get('b'))
         n = int(request.POST.get('n'))
 
         float_digits = int(request.POST.get('float_digits'))

@@ -25,13 +25,13 @@ def simpson(a,b,n, flt_digits, f):
         x = a+i*h
         if i == 0 or i == n:
             sum0 += f(x)
-            result.append((i,': \t', round(rnd(x, flt_digits)[-1], 10),'\t', round(rnd(f(x), flt_digits)[-1], 10), '\t\t', round(rnd(f(x), flt_digits)[-1], 10)))
+            result.append((i, round(rnd(x, flt_digits)[-1], 10), round(rnd(f(x), flt_digits)[-1], 10), round(rnd(f(x), flt_digits)[-1], 10)))
         elif i%2==0:
             sum2 += f(x)
-            result.append((i,': \t', round(rnd(x, flt_digits)[-1], 10),'\t', round(rnd(f(x), flt_digits)[-1], 10), '\t', round(rnd(2*f(x), flt_digits)[-1], 10)))
+            result.append((i, round(rnd(x, flt_digits)[-1], 10), round(rnd(2*f(x), flt_digits)[-1], 10),  round(rnd(2*f(x), flt_digits)[-1], 10)))
         else:
             sum1 += f(x)
-            result.append((i,': \t', round(rnd(x, flt_digits)[-1], 10),'\t', round(rnd(f(x), flt_digits)[-1], 10), '\t', round(rnd(4*f(x), flt_digits)[-1], 10)))
+            result.append((i, round(rnd(x, flt_digits)[-1], 10), round(rnd(4*f(x), flt_digits)[-1], 10),  round(rnd(4*f(x), flt_digits)[-1], 10)))
     
     sum = round(rnd( h/3*(sum0+(4*sum1)+(2*sum2)) , flt_digits)[-1], 8)
     # y = round(integrate.quad(f,a,b)[0], 8)
