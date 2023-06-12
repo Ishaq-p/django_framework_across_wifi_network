@@ -28,12 +28,33 @@
 </form>
 
 {% if result %}
-    <ul>
+    <!-- <ul>
         {% for item in result %}
             <li><p>{{ item.0 }} || {{ item.1 }} || {{ item.2 }} || {{ item.3 }}</p></li>
         {% endfor %}
-    </ul>
-   
+    </ul> -->
+
+    <table style="border-collapse: collapse; width: 100%; text-align: center;">
+        <thead>
+          <tr>
+            <th style="border: 1px solid black; padding: 8px;">n</th>
+            <th style="border: 1px solid black; padding: 8px;">x_k</th>
+            <th style="border: 1px solid black; padding: 8px;">y_k</th>
+          </tr>
+        </thead>
+        <tbody>
+            {% for item in result %}
+          <tr>
+            <td style="border: 1px solid black; padding: 8px;">{{ item.0 }}</td>
+            <td style="border: 1px solid black; padding: 8px;">{{ item.1 }}</td>
+            <td style="border: 1px solid black; padding: 8px;">{{ item.2 }}</td>
+
+          </tr>
+          {% endfor %}
+    
+        </tbody>
+      </table>
+
 {% endif %}
 
 

@@ -25,13 +25,37 @@
     <button type="submit">Calculate</button>
 </form>
 
-{% if result %}
+<!-- {% if result %}
     <ol>
         {% for item in result %}
             <li> {{ item }} </li>
         {% endfor %}
     </ol>
   
+{% endif %} -->
+
+{% if result %}
+    <table style="border-collapse: collapse; width: 100%; text-align: center;">
+        <thead>
+        <tr>
+            <th style="border: 1px solid black; padding: 8px;">n</th>
+            <th style="border: 1px solid black; padding: 8px;">P(n-1)</th>
+            <th style="border: 1px solid black; padding: 8px;">P(n)</th>
+            <th style="border: 1px solid black; padding: 8px;">RE</th>
+        </tr>
+        </thead>
+        <tbody>
+            {% for item in result %}
+        <tr>
+            <td style="border: 1px solid black; padding: 8px;">{{ item.0 }}</td>
+            <td style="border: 1px solid black; padding: 8px;">{{ item.1 }}</td>
+            <td style="border: 1px solid black; padding: 8px;">{{ item.2 }}</td>
+            <td style="border: 1px solid black; padding: 8px;">{{ item.3 }}</td>
+        </tr>
+        {% endfor %}
+
+        </tbody>
+    </table>
 {% endif %}
 
 {% endblock %}
