@@ -332,7 +332,6 @@ button[type="submit"]:active {
   justify-content: center;
   align-items: center;
   flex-direction: row;
-
 }
 .main_page_divs{
   display: flex;
@@ -345,7 +344,6 @@ button[type="submit"]:active {
   border-radius: 10px;
   border-style: solid;
   border-color: #b9c1d4;
-
 }
 @media screen and (max-width: 850px) {
   .home_buttons_container2 {
@@ -489,3 +487,54 @@ width: 100%;
 border-width: 3px;
 border-color: #000;
 }
+
+
+
+                            /* HOMEPAGE ANIMATION */
+  @keyframes spin {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+
+  @keyframes move {
+    0% {
+      transform: scaleY(1);
+    }
+    100% {
+      transform: scaleY(3);
+    }
+  }
+
+  .animation-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 350px;
+  }
+
+  .circle {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    border: 10px solid #ffcc00;
+    animation: spin 2s linear infinite;
+    position: relative;
+  }
+
+  .line {
+    position: absolute;
+    width: 4px;
+    height: 80px;
+    background-color: #ffcc00;
+    transform-origin: center;
+    animation: move 2s ease-in-out infinite alternate;
+  }
+
+
+
+
+  

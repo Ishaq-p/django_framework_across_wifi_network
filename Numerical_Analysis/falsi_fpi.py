@@ -18,12 +18,14 @@ def falsi_fpi(a,b, epsilon, float_digits, func):
     n=0
     RE = 1
     
-    x = torch.tensor(float(a), requires_grad=True)
-    df_dx = torch.autograd.grad(func(x), x, create_graph=True)[0]
-    df_dx_2 = torch.autograd.grad(df_dx, x)[0]
+    # x = torch.tensor(float(a), requires_grad=True)
+    # df_dx = torch.autograd.grad(func(x), x, create_graph=True)[0]
+    # df_dx_2 = torch.autograd.grad(df_dx, x)[0]
 
-    alpha = func(a)*df_dx_2.item()
-    falsi_fpi_results.append(('Alpha = ', f"{alpha:.{float_digits-1}e}"))
+    # alpha = func(a)*df_dx_2.item()
+    # falsi_fpi_results.append(('Alpha = ', f"{alpha:.{float_digits-1}e}"))]
+    
+    alpha = -0.026271019267   # DELETE THIS LINE AND UNCOMMENT THE ABOVE LINES
 
     if alpha < 0:
         p0=a

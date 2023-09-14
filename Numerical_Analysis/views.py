@@ -147,7 +147,7 @@ def regula_falsi(request):
 
 def text_to_function(expression):
     def function(x):
-        return eval(expression, {'__builtins__': None}, {'x': x, 'pi': math.pi, 'e': math.e, 'sin': math.sin})
+        return eval(expression, {'__builtins__': None}, {'x': x, 'pi': math.pi, 'e': math.e, 'sin': math.sin, 'arcsin': math.asin, 'cos': math.cos, 'arccos': math.acos, 'tan': math.tan, 'arctan': math.atan, 'log': math.log, 'ln': math.log, 'sqrt': math.sqrt, 'abs': abs, 'exp': math.exp, 'cot': lambda x: 1/math.tan(x), 'sec': lambda x: 1/math.cos(x), 'csc': lambda x: 1/math.sin(x)})
     return function    
 
 

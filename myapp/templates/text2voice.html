@@ -1,0 +1,103 @@
+{% extends 'base1.html' %}
+
+{% block content %}
+{% load static %}
+
+<a id="home_button" href="{% url 'home' %}" >Homepage</a><br>
+
+<h1>The  Text to Voice Page</h1>
+
+
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <input type="submit" value="Submit">
+</form>
+
+
+{% if result %}
+    <p>{{ result }}</p>
+        <!-- Called of font style  file -->
+
+<div class="container-audio">
+    <audio controls  loop autoplay>
+               <source src="/media/text2voice/output.mp3" " type="audio/mpeg">
+               Your browser dose not Support the audio Tag
+           </audio>
+</div>
+<div class="container-audio">
+    <div class="colum1">
+        <div class="row"></div>
+    </div>
+    <div class="colum1">
+        <div class="row"></div>
+    </div>
+    <div class="colum1">
+        <div class="row"></div>
+    </div>
+    <div class="colum1">
+        <div class="row"></div>
+    </div>
+    <div class="colum1">
+        <div class="row"></div>
+    </div>
+    <div class="colum1">
+        <div class="row"></div>
+    </div>
+    <div class="colum1">
+        <div class="row"></div>
+    </div>
+    <div class="colum1">
+        <div class="row"></div>
+    </div>
+    <div class="colum1">
+        <div class="row"></div>
+    </div>
+    <div class="colum1">
+        <div class="row"></div>
+    </div>
+    <div class="colum1">
+        <div class="row"></div>
+    </div>
+    <div class="colum1">
+        <div class="row"></div>
+    </div>
+    <div class="colum1">
+        <div class="row"></div>
+    </div>
+    <div class="colum1">
+        <div class="row"></div>
+    </div>
+    <div class="colum1">
+        <div class="row"></div>
+    </div>
+    <div class="colum1">
+        <div class="row"></div>
+    </div>
+    <div class="colum1">
+        <div class="row"></div>
+    </div>
+    <div class="colum1">
+        <div class="row"></div>
+    </div>
+    <div class="colum1">
+        <div class="row"></div>
+    </div>
+    <div class="colum1">
+        <div class="row"></div>
+    </div>
+    <div class="colum1">
+        <div class="row"></div>
+    </div>
+    <div class="colum1">
+        <div class="row"></div>
+    </div>
+    <div class="colum1">
+        <div class="row"></div>
+    </div>
+</div>
+ 
+{% endif %}
+
+
+{% endblock %}

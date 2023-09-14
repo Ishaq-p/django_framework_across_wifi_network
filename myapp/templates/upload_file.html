@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
 
 {% block content %}
+{% load static %}
 
 <a id="home_button" href="{% url 'home' %}" >Homepage</a><br>
 
@@ -20,11 +21,16 @@
 
     </form>
     {% if bool == 1 %}
-        <img src="Snapchat-269265218.jpg" alt="Uploaded Image">
+        <p>Image uploaded. </p>
+        <p>{{ final_pred.0 }}</p>
+        <p>{{ final_pred.1 }}</p>
+        <p>{{ final_pred.2 }}</p>
+        <p>{{ final_pred.3 }}</p>
+        <p>{{ final_pred.4 }}</p>
+        <img src="/media/{{ uploaded_file_url }}" alt="Uploaded Image">
     {% else %}
         <p>No image uploaded.</p>
     {% endif %}
-  
 
 
 {% endblock %}
